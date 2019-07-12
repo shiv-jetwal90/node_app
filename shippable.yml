@@ -1,18 +1,6 @@
 # Language setting http://docs.shippable.com/ci/languages/node/
 language: node_js
 
-# Integrations are used to connect external resources to CI
-# http://docs.shippable.com/integrations/overview/
-integrations:
-  # adding docker hub integration so that credentials are available to CI Job
-  # http://docs.shippable.com/platform/integration/dockerRegistryLogin/
-  hub:
-    - integrationName: dr_dh
-      type: dockerRegistryLogin
-      
-  kubernets:
-    - integrationName: drship_kube
-      type: kubernetes
 
 # use this to control what branches get built.
 # http://docs.shippable.com/ci/advancedOptions/branches/
@@ -32,31 +20,44 @@ env:
     - DOCKER_ACC=shiv100 # {account name}
     - SHIP_IMG_RES=$DOCKER_REPO"_img_dh"
 
-# build:
+build:
 
-#   # http://docs.shippable.com/ci/shippableyml/#ci
-#   ci:
-#     # npm mirrors can sometimes be flacky, better to use shippable_retry
-#     # http://docs.shippable.com/ci/advancedOptions/retry/
-#     - node -v
-#     - npm install
-#     - mkdir -p $TEST_RESULTS_DIR && mkdir -p $CODE_COVERAGE_DIR
-#     - pushd $TESTS_LOC_DIR
-#     - $MOD_LOC/mocha --recursive "$TESTS_LOC_DIR/**/*.spec.js" -R mocha-junit-reporter --reporter-options mochaFile=$TEST_RESULTS_DIR/testresults.xml
-#     - $MOD_LOC/istanbul --include-all-sources cover -root "$SHIPPABLE_REPO_DIR/routes" $SHIPPABLE_REPO_DIR/node_modules/mocha/bin/_mocha -- -R spec-xunit-file --recursive "$TESTS_LOC_DIR/**/*.spec.js"
-#     - $MOD_LOC/istanbul report cobertura --dir $CODE_COVERAGE_DIR
-#     - popd
+  # http://docs.shippable.com/ci/shippableyml/#ci
+  ci:
+    # npm mirrors can sometimes be flacky, better to use shippable_retry
+    # http://docs.shippable.com/ci/advancedOptions/retry/
+    - node -v
+    - npm install
+    - mkdir -p $TEST_RESULTS_DIR && mkdir -p $CODE_COVERAGE_DIR
+    - pushd $TESTS_LOC_DIR
+    - $MOD_LOC/mocha --recursive "$TESTS_LOC_DIR/**/*.spec.js" -R mocha-junit-reporter --reporter-options mochaFile=$TEST_RESULTS_DIR/testresults.xml
+    - $MOD_LOC/istanbul --include-all-sources cover -root "$SHIPPABLE_REPO_DIR/routes" $SHIPPABLE_REPO_DIR/node_modules/mocha/bin/_mocha -- -R spec-xunit-file --recursive "$TESTS_LOC_DIR/**/*.spec.js"
+    - $MOD_LOC/istanbul report cobertura --dir $CODE_COVERAGE_DIR
+    - popd
 
-#   # http://docs.shippable.com/ci/shippableyml/#post_ci
-#   post_ci:
-#     - docker build -t $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$BUILD_NUMBER .
-#     - if [ "$IS_PULL_REQUEST" != true ]; then docker push $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$BUILD_NUMBER; fi
+  # http://docs.shippable.com/ci/shippableyml/#post_ci
+  post_ci:
+    - docker build -t $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$BUILD_NUMBER .
+    - if [ "$IS_PULL_REQUEST" != true ]; then docker push $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$BUILD_NUMBER; fi
     
-#   #this will be ignored if you are not using Assembly Lines to trigger another job after ci  
-#   on_success:
-#     - shipctl put_resource_state $SHIP_IMG_RES versionName $BRANCH.$BUILD_NUMBER
+  #this will be ignored if you are not using Assembly Lines to trigger another job after ci  
 
-## OPTIONAL : In case you want to use this image in CD Assembly Lines
+# Integrations are used to connect external resources to CI
+# http://docs.shippable.com/integrations/overview/
+integrations:
+  # adding docker hub integration so that credentials are available to CI Job
+  # http://docs.shippable.com/platform/integration/dockerRegistryLogin/
+  hub:
+    - integrationName: dr_dh
+      type: dockerRegistryLogin
+      
+  kubernets:
+    - integrationName: drship_kube
+      type: kubernetes
+
+
+
+# OPTIONAL : In case you want to use this image in CD Assembly Lines
 resources:
   - name: node_app_img_dh
     type: image
@@ -69,6 +70,14 @@ resources:
   - name: cd_k8s_kube_config
     type: cliConfig
     integration: "drship_kube"
+
+  # - name:             kube_cluster
+  #   type:             cluster
+  #   integration:      Kubernetes
+  #   versionTemplate:
+  #           address:        
+  #           user:           <bastionHost user>
+  #           keyIntegration: <key_integration_resource>
 
 jobs:
   - name: container_multiple_tasks
