@@ -6,7 +6,7 @@
 
 A simple Node JS application with unit tests and coverage reports using mocha 
 and istanbul. It also does a docker build once CI posses and then pushes the image
-to docker hub
+to docker hub.
 
 ## Run CI for this repo on Shippable
 * Fork this repo into your local repo
