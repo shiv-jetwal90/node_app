@@ -16,4 +16,4 @@ to docker hub
 * Follow these [CI Setup Instructions](http://docs.shippable.com/ci/runFirstBuild/) if you have never used Shippable CI Service
 * Update the integrationName in the integration.hub section if you used something other than `shipDH`
 * Change the DOCKER_REPO and DOCKER_ACC to point to your repo and docker account
-* You should be able to run a manual build or webhook build on commit
+* You should be able to run a manual build or webhook build on commit.
