@@ -51,9 +51,9 @@ resources:
     type: cliConfig
     integration: "drship_kube"
 
-  - name: test_github
+  - name: test_repo
     type: gitRepo
-    integration: github
+    integration: test_github
     versionTemplate:
       sourceName: shivjetwal90/node_app
       branch: master
@@ -62,7 +62,7 @@ jobs:
     type: runSh
     steps:
       - IN: kubeconfig
-      - IN: test_github
+      - IN: test_repo
       - IN: runCI
       - TASK:
           script:
