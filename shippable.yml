@@ -8,4 +8,4 @@ jobs:
       - TASK:
           name: task
           script:
-            - uname -a
+            - echo "Hello"
