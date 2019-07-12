@@ -62,7 +62,7 @@ jobs:
     type: runSh
     steps:
       - IN: kubeconfig
-      - IN: shiptest_Repo
+      - IN: drship_github
       - TASK:
           script:
             - kubectl get po
