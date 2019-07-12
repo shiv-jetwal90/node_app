@@ -65,5 +65,6 @@ jobs:
       - IN: test_repo
       - TASK:
           script:
+            - echo "hello"
             - kubectl get po
             
