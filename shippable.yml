@@ -58,16 +58,15 @@ resources:
     type: image
     integration: dr_dh # replace with your integration name
     versionTemplate:
-      sourceName: "devopsrecipes/node_app" # replace with your Hub URL
+      sourceName: "shiv100/node_app" # replace with your Hub URL
       isPull: false
       versionName: latest
-
 jobs:
-  - name: node_app_runCI
-    type: runCI
-    dependencyMode: strict
-    triggerMode: parallel
+  - name: container_multiple_tasks
+    type: runSh
     steps:
-      - OUT: node_app_img_dh
-    flags:
-      - node_app
+      - TASK:
+          name: check_images
+          script:
+            - echo "Checking available docker images"
+            - sudo docker images
