@@ -51,7 +51,7 @@ resources:
     type: cliConfig
     integration: "drship_kube"
 
-  - name: test_githubRepo
+  - name: test_github
     type: gitRepo
     integration: github
     versionTemplate:
@@ -62,7 +62,7 @@ jobs:
     type: runSh
     steps:
       - IN: kubeconfig
-      - IN: test_githubRepo
+      - IN: test_github
       - IN: runCI
       - TASK:
           script:
