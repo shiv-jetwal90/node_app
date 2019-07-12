@@ -51,7 +51,7 @@ resources:
     type: cliConfig
     integration: "drship_kube"
 
-  - name: shiptest_Repo
+  - name: drship_github
     type: gitRepo
     integration: github
     versionTemplate:
