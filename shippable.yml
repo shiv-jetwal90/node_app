@@ -55,7 +55,7 @@ resources:
     type: gitRepo
     integration: test_github
     versionTemplate:
-      sourceName: shivjetwal90/node_app
+      sourceName: shiv-jetwal90/node_app
       branch: master
 jobs:
   - name: publish_installer
