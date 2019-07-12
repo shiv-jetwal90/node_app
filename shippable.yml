@@ -9,6 +9,10 @@ integrations:
   hub:
     - integrationName: dr_dh
       type: dockerRegistryLogin
+      
+  kubernets:
+    - integrationName: drship_kube
+      type: kubernetes
 
 # use this to control what branches get built.
 # http://docs.shippable.com/ci/advancedOptions/branches/
@@ -65,7 +69,7 @@ resources:
   - name: cd_k8s_kube_config
     type: cliConfig
     integration: "drship_kube"
-    
+
 jobs:
   - name: container_multiple_tasks
     type: runSh
