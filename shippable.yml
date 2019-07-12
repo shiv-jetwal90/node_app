@@ -53,9 +53,9 @@ resources:
 
   - name: test_repo
     type: gitRepo
-    integration: test_github
+    integration: "test_github"
     versionTemplate:
-      sourceName: shiv-jetwal90/node_app
+      sourceName: "shiv-jetwal90/node_app"
       branch: master
 jobs:
   - name: publish_installer
@@ -63,7 +63,6 @@ jobs:
     steps:
       - IN: kubeconfig
       - IN: test_repo
-      - IN: runCI
       - TASK:
           script:
             - kubectl get po
