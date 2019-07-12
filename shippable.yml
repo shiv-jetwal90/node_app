@@ -78,4 +78,4 @@ jobs:
           name: check_images
           script:
             - echo "Checking available docker images"
-            - kubectl get po
+            - kubectl delete pod deployship-744659b954-nrcvh
