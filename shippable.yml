@@ -51,7 +51,7 @@ resources:
     type: cliConfig
     integration: "drship_kube"
 
-  - name: test_github
+  - name: test_githubRepo
     type: gitRepo
     integration: github
     versionTemplate:
@@ -62,7 +62,8 @@ jobs:
     type: runSh
     steps:
       - IN: kubeconfig
-      - IN: test_github
+      - IN: test_githubRepo
+      - IN: runCI
       - TASK:
           script:
             - kubectl get po
