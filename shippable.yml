@@ -67,7 +67,7 @@ resources:
       isPull: false
       versionName: latest
       
-  - name: cd_k8s_kube_config
+  - name: k8s_kube_config
     type: cliConfig
     integration: "drship_kube"
 
