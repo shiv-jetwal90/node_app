@@ -67,4 +67,7 @@ jobs:
           script:
             - echo "hello"
             - kubectl get po
+   
             
+on success:
+  - echo "Hello"
