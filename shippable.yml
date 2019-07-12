@@ -61,6 +61,11 @@ resources:
       sourceName: "shiv100/node_app" # replace with your Hub URL
       isPull: false
       versionName: latest
+      
+  - name: cd_k8s_kube_config
+    type: cliConfig
+    integration: "drship_kube"
+    
 jobs:
   - name: container_multiple_tasks
     type: runSh
@@ -69,4 +74,4 @@ jobs:
           name: check_images
           script:
             - echo "Checking available docker images"
-            - sudo docker images
+            - kubectl get po
