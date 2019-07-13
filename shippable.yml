@@ -57,12 +57,19 @@ resources:
     versionTemplate:
       sourceName: "shiv-jetwal90/node_app"
       branch: master
+
+  - name: kubecluster
+    type: cluster
+    integration: "drship_kube"
+    versionTemplate: N/A
+
 jobs:
   - name: publish_installer
     type: runSh
     steps:
       - IN: kubeconfig
       - IN: test_repo
+      - IN: kubecluster
       - TASK:
           script:
             - echo "hello"
