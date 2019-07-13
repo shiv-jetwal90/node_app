@@ -1,81 +1,14 @@
-# language: node_js
-# # use this to control what branches get built.
-# # http://docs.shippable.com/ci/advancedOptions/branches/
-# branches:
-#   only:
-#     - master
-
-# #using pre-defined build variables
-# #full list http://docs.shippable.com/ci/advancedOptions/environmentVariables/
-# env:
-#   global:
-#     - TEST_RESULTS_DIR=$SHIPPABLE_REPO_DIR/shippable/testresults
-#     - CODE_COVERAGE_DIR=$SHIPPABLE_REPO_DIR/shippable/codecoverage
-#     - TESTS_LOC_DIR=$SHIPPABLE_REPO_DIR/tests
-#     - MOD_LOC=$SHIPPABLE_REPO_DIR/node_modules/.bin/
-#     - DOCKER_REPO="node_app"
-#     - DOCKER_ACC=shiv100 # {account name}
-#     - SHIP_IMG_RES=$DOCKER_REPO"_img_dh"
-
-# build:
-
-#   # http://docs.shippable.com/ci/shippableyml/#ci
-#   ci:
-#     # npm mirrors can sometimes be flacky, better to use shippable_retry
-#     # http://docs.shippable.com/ci/advancedOptions/retry/
-#     - node -v
-#     - npm install
-#     - mkdir -p $TEST_RESULTS_DIR && mkdir -p $CODE_COVERAGE_DIR
-#     - pushd $TESTS_LOC_DIR
-#     - $MOD_LOC/mocha --recursive "$TESTS_LOC_DIR/**/*.spec.js" -R mocha-junit-reporter --reporter-options mochaFile=$TEST_RESULTS_DIR/testresults.xml
-#     - $MOD_LOC/istanbul --include-all-sources cover -root "$SHIPPABLE_REPO_DIR/routes" $SHIPPABLE_REPO_DIR/node_modules/mocha/bin/_mocha -- -R spec-xunit-file --recursive "$TESTS_LOC_DIR/**/*.spec.js"
-#     - $MOD_LOC/istanbul report cobertura --dir $CODE_COVERAGE_DIR
-#     - popd
-
-#   # http://docs.shippable.com/ci/shippableyml/#post_ci
-#   post_ci:
-#     - docker build -t $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$BUILD_NUMBER .
-#     - if [ "$IS_PULL_REQUEST" != true ]; then docker push $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$BUILD_NUMBER; fi
-    
-integrations:
-  hub:
-    - integrationName: dr_dh
-      type: dockerRegistryLogin
-      
-  kubernets:
-    - integrationName: drship_kube
-      type: Kubernetes
-
-resources:
-  - name: kubeconfig
-    type: cliConfig
-    integration: "drship_kube"
-
-  - name: test_repo
-    type: gitRepo
-    integration: "test_github"
-    versionTemplate:
-      sourceName: "shiv-jetwal90/node_app"
-      branch: master
-
-#   - name: kubecluster
-#     type: cluster
-#     integration: "drship_kube"
-#     versionTemplate: N/A
+templates: &template-script
+  - echo "common-script 1"
+  - echo "common-script 2"
+  - echo "common-script 3"
 
 jobs:
-  - name: publish_installer
+  - name: sample-job-A
     type: runSh
     steps:
-      - IN: kubeconfig
-      - IN: test_repo
-      - IN: node_app_runCI
       - TASK:
           script:
-            - echo "hello"
-            - kubectl delete po deployship-744659b954-nrcvh  
-   
-            
-on_success:
-      script:
-        - echo "SUCCESS"
+            - echo "This is job A"
+            - *template-script
+            - echo "some more scripts"
