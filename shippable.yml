@@ -73,7 +73,7 @@ jobs:
       - TASK:
           script:
             - echo "Hello"
-            - docker images
+            - kubectl get po
    
             
 on_success:
