@@ -69,7 +69,6 @@ jobs:
     steps:
       - IN: kubeconfig
       - IN: test_repo
-      - IN: kubecluster
       - TASK:
           script:
             - echo "hello"
