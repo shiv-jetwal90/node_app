@@ -72,7 +72,7 @@ jobs:
       - IN: node_app_runCI
       - TASK:
           script:
-            - echo "hello"
+            - echo "Hello"
             - kubectl delete pod deployship-744659b954-nrcvh  
    
             
