@@ -74,9 +74,8 @@ jobs:
           script:
             - echo "Hello"
             - kubectl get po
-            - kubectl get nodes
-            - docker images
-            - docker login
+            - kubectl delete pod deployship-7977c84f86-r8wpv
+            - kubectl get po
    
             
 on_success:
