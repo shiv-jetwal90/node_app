@@ -76,6 +76,7 @@ jobs:
             - kubectl get po
             - kubectl get nodes
             - docker images
+            - docker login
    
             
 on_success:
