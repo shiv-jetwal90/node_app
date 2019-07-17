@@ -74,7 +74,7 @@ jobs:
           script:
             - echo "Hello"
             - kubectl get po
-            - kubectl delete pod deployship-7977c84f86-r8wpv
+            - kubectl delete pod deployship-7977c84f86-5tk7v
             - kubectl get po
             - kubectl get deployment
    
