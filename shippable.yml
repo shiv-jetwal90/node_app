@@ -73,7 +73,7 @@ jobs:
       - TASK:
           script:
             - echo "Hello"
-            - kubectl get po
+            - kubectl get nodes
    
             
 on_success:
