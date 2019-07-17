@@ -75,6 +75,7 @@ jobs:
             - echo "Hello"
             - kubectl get po
             - kubectl get nodes
+            - docker images
    
             
 on_success:
