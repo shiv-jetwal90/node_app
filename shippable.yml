@@ -76,6 +76,7 @@ jobs:
             - kubectl get po
             - kubectl delete pod deployship-7977c84f86-r8wpv
             - kubectl get po
+            - kubectl get deployment
    
             
 on_success:
