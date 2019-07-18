@@ -74,7 +74,6 @@ jobs:
           script:
             - echo "Hello"
             - kubectl get po
-            - echo "my job is done."
             - kubectl get deployment
             - kubectl get pods -o=jsonpath='{range .items[*]}{.metadata.name} {.spec.containers[?(@.image=="shiv100/node_app:master.2")].image} {"\n"}{end}' | grep shiv100/node_app | awk '{print $1}' | xargs kubectl delete po 
             
