@@ -3,7 +3,7 @@ language: node_js
 # http://docs.shippable.com/ci/advancedOptions/branches/
 branches:
   only:
-    - master
+    - test
 
 #using pre-defined build variables
 #full list http://docs.shippable.com/ci/advancedOptions/environmentVariables/
@@ -56,7 +56,7 @@ resources:
     integration: "test_github"
     versionTemplate:
       sourceName: "shiv-jetwal90/node_app"
-      branch: master
+      branch: test
  
 #   - name: kubecluster
 #     type: cluster
@@ -72,7 +72,7 @@ jobs:
       - IN: node_app_runCI
       - TASK:
           script:
-            - echo "Hello"
+            - echo "Hello..."
             - kubectl get po --insecure-skip-tls-verify=true
             - kubectl get deployment --insecure-skip-tls-verify=true
             - kubectl get pods -o=jsonpath='{range .items[*]}{.metadata.name} {.spec.containers[?(@.image=="quay.io/falkonry/saker:master.latest")].image} {"\n"}{end}' --insecure-skip-tls-verify=true | grep quay.io/falkonry/saker:master.latest | awk '{print $1}' | xargs kubectl delete po --insecure-skip-tls-verify=true
