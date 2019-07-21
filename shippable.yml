@@ -56,7 +56,7 @@ resources:
     integration: "test_github"
     versionTemplate:
       sourceName: "shiv-jetwal90/node_app"
-      branch: master
+      branch: test
  
 #   - name: kubecluster
 #     type: cluster
