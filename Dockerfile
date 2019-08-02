@@ -1,6 +1,7 @@
 FROM readytalk/nodejs
 
 # Add our configuration files and scripts
+ARG buildtime_variable
 WORKDIR /app
 ADD . /app
 RUN npm install
