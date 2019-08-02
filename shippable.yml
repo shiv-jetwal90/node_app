@@ -34,7 +34,7 @@ build:
 
   http://docs.shippable.com/ci/shippableyml/#post_ci
   post_ci:
-    - docker build -t $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$BUILD_NUMBER -arg buildtime_variable=$BUILD_NUMBER.
+    - docker build -t $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$BUILD_NUMBER.
     - if [ "$IS_PULL_REQUEST" != true ]; then docker push $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$BUILD_NUMBER; fi
     
 # integrations:
