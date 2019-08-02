@@ -73,6 +73,7 @@ jobs:
       - TASK:
           script:
             - echo "Hello"
+            - echo "hi"
             
             
 on_success:
