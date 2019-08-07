@@ -9,7 +9,7 @@ build:
     - npm --version
     - npm install
   post_ci:
-    - ./build.sh
+    - ./test.sh
     - echo "hello"
 # language: node_js
 # # use this to control what branches get built.
