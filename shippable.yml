@@ -81,7 +81,7 @@ build:
 #     - integrationName: drship_kube
 #       type: Kubernetes
 
- resources:
+resources:
    - name: kubeconfig
      type: cliConfig
      integration: "drship_kube"
@@ -97,8 +97,7 @@ build:
  #    type: cluster
 #     integration: "drship_kube"
 #     versionTemplate: N/A
-
- jobs:
+jobs:
    - name: publish_installer
      type: runSh
      steps:
