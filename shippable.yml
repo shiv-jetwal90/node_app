@@ -81,33 +81,33 @@ build:
 #     - integrationName: drship_kube
 #       type: Kubernetes
 
-# resources:
-#   - name: kubeconfig
-#     type: cliConfig
-#     integration: "drship_kube"
+ resources:
+   - name: kubeconfig
+     type: cliConfig
+     integration: "drship_kube"
 
-#   - name: test_repo
-#     type: gitRepo
-#     integration: "test_github"
-#     versionTemplate:
-#       sourceName: "shiv-jetwal90/node_app"
-#       branch: master
+   - name: test_repo
+     type: gitRepo
+     integration: "test_github"
+     versionTemplate:
+       sourceName: "shiv-jetwal90/node_app"
+       branch: master
  
-#   - name: kubecluster
-#     type: cluster
+  # - name: kubecluster
+ #    type: cluster
 #     integration: "drship_kube"
 #     versionTemplate: N/A
 
-# jobs:
-#   - name: publish_installer
-#     type: runSh
-#     steps:
-#       - IN: kubeconfig
-#       - IN: test_repo
-#       - IN: node_app_runCI
-#       - TASK:
-#           script:
-#             - echo "Hello"
+ jobs:
+   - name: publish_installer
+     type: runSh
+     steps:
+       - IN: kubeconfig
+       - IN: test_repo
+       - IN: node_app_runCI
+       - TASK:
+           script:
+             - kubectl get po
 #             - echo "hi"
             
             
