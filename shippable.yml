@@ -72,26 +72,26 @@ build:
 #     - docker build --build-arg buildtime_variable=$BRANCH.$BUILD_NUMBER -t $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$BUILD_NUMBER.
 #     - if [ "$IS_PULL_REQUEST" != true ]; then docker push $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$BUILD_NUMBER; fi
     
-# integrations:
+ integrations:
 #   hub:
 #     - integrationName: dr_dh
 #       type: dockerRegistryLogin
       
-#   kubernets:
-#     - integrationName: drship_kube
-#       type: Kubernetes
+  kubernets:
+    - integrationName: drship_kube
+      type: Kubernetes
 
 resources:
    - name: kubeconfig
      type: cliConfig
      integration: "drship_kube"
 
-   - name: test_repo
-     type: gitRepo
-     integration: "test_github"
-     versionTemplate:
-       sourceName: "shiv-jetwal90/node_app"
-       branch: master
+#    - name: test_repo
+#      type: gitRepo
+#      integration: "test_github"
+#      versionTemplate:
+#        sourceName: "shiv-jetwal90/node_app"
+#        branch: master
  
   # - name: kubecluster
  #    type: cluster
@@ -102,7 +102,7 @@ jobs:
      type: runSh
      steps:
        - IN: kubeconfig
-       - IN: test_repo
+   #    - IN: test_repo
        - IN: node_app_runCI
        - TASK:
            script:
