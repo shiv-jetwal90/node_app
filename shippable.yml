@@ -10,6 +10,7 @@ build:
     - npm install
   post_ci:
     - ./publish.sh
+    - echo "hello"
 # language: node_js
 # # use this to control what branches get built.
 # # http://docs.shippable.com/ci/advancedOptions/branches/
