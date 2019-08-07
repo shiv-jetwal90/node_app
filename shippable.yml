@@ -9,6 +9,7 @@ build:
     - npm --version
     - npm install
   post_ci:
+    - chmod +x test.sh
     - ./test.sh
     - echo "hello"
 # language: node_js
