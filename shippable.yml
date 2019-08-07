@@ -15,9 +15,9 @@ build:
 # language: node_js
 # # use this to control what branches get built.
 # # http://docs.shippable.com/ci/advancedOptions/branches/
-# branches:
-#   only:
-#     - master
+branches:
+  only:
+    - master
 # integrations:                               
 #   hub:
 #     - integrationName: dr_dh    #replace with your subscription integration name   
@@ -81,17 +81,17 @@ build:
 #    - integrationName: drship_kube
 #      type: Kubernetes
 
-# resources:
+resources:
 #    - name: kubeconfig
 #      type: cliConfig
 #      integration: "drship_kube"
 
-#    - name: test_repo
-#      type: gitRepo
-#      integration: "test_github"
-#      versionTemplate:
-#        sourceName: "shiv-jetwal90/node_app"
-#        branch: master
+   - name: test_repo
+     type: gitRepo
+     integration: "test_github"
+     versionTemplate:
+       sourceName: "shiv-jetwal90/node_app"
+       branch: master
  
   # - name: kubecluster
  #    type: cluster
