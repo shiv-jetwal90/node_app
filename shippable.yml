@@ -107,7 +107,7 @@ jobs:
        - TASK:
            script:
              - kubectl get po
-#             - echo "hi"
+             - echo "hi"
             
             
 # on_success:
