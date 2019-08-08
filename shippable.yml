@@ -114,7 +114,7 @@ jobs:
        - TASK:
            script:
              - echo "hi"
-             - if ["$PULL_REQUEST" = "false"]; then echo "hello" 
+             - echo "hello" 
             
 # on_success:
 #       script:
