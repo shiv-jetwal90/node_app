@@ -106,7 +106,7 @@ resources:
 #     versionTemplate: N/A
 jobs:
    - name: publish_installer
-     type: runSh
+     type: runCI
      steps:
    #    - IN: kubeconfig
        - IN: test_repo
