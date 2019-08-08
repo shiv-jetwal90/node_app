@@ -82,16 +82,23 @@ branches:
 #      type: Kubernetes
 
 resources:
+  - name: test_repo
+    type: gitRepo
+    integration: "test_github"
+    versionTemplate:
+      sourceName: "shiv-jetwal90/node_app"
+      branch: master
+
 #    - name: kubeconfig
 #      type: cliConfig
 #      integration: "drship_kube"
 
-   - name: test_repo
-     type: gitRepo
-     integration: "test_github"
-     versionTemplate:
-       sourceName: "shiv-jetwal90/node_app"
-       branch: master
+#    - name: test_repo
+#      type: gitRepo
+#      integration: "test_github"
+#      versionTemplate:
+#        sourceName: "shiv-jetwal90/node_app"
+#        branch: master
  
   # - name: kubecluster
  #    type: cluster
@@ -102,7 +109,7 @@ jobs:
      type: runSh
      steps:
    #    - IN: kubeconfig
-   #    - IN: test_repo
+       - IN: test_repo
        - IN: node_app_runCI
        - TASK:
            script:
